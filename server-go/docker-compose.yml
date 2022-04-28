@@ -1,17 +1,32 @@
 version: '3'
-
 services:
-
   kafka:
     image: wurstmeister/kafka
     container_name: kafka
-    hostname: 35.238.112.70
     ports:
       - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 35.238.112.70
+      KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_PORT: "9092"
+    networks:
+      - kafka_go_net
+  producer:
+    build: ./
+    container_name: producer
+    ports: 
+      - 50051:50051
+    depends_on:
+      - "kafka"
+    restart: always
+    networks:
+      - kafka_go_net
+  client:
+    build: ../grpc-client
+    container_name: clientnode
+    ports: 
+      - 5000:5000
+    restart: always
     networks:
       - kafka_go_net
   zookeeper:
@@ -21,7 +36,6 @@ services:
       - "2181:2181"
     networks:
       - kafka_go_net
-
   subscriber:
     build: ./Kafka/
     container_name: subscriber
@@ -32,7 +46,6 @@ services:
     restart: always
     networks:
       - kafka_go_net
-  
 networks:
   kafka_go_net:
     driver: bridge

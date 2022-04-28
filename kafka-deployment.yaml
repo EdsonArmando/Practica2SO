@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: practica2-201701029
+  labels:
+    name: practica2-201701029
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - image: wurstmeister/kafka
+        name: kafka
+        ports:
+        - containerPort: 9092
+      
+      - image: wurstmeister/zookeeper
+        name: zookeeper
+        ports:
+        - containerPort: 2181
+
+      - image: edson2021/subscribergo:latest
+        name: subscriber
+        ports:
+        - containerPort: 8080

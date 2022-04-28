@@ -18,7 +18,7 @@ import (
 )
 
 var (
-	brokerList        = kingpin.Flag("brokerList", "List of brokers to connect").Default("kafka:9092").Strings()
+	brokerList        = kingpin.Flag("brokerList", "List of brokers to connect").Default("127.0.0.1:9092").Strings()
 	topic             = kingpin.Flag("topic", "Topic name").Default("important").String()
 	partition         = kingpin.Flag("partition", "Partition number").Default("0").String()
 	offsetType        = kingpin.Flag("offsetType", "Offset Type (OffsetNewest | OffsetOldest)").Default("-1").Int()
@@ -118,3 +118,5 @@ func insertar_mongo(contenido []byte) {
 	fmt.Println(posts)
 
 }
+//docker rmi wurstmeister/zookeeper wurstmeister/kafka server-go_subscriber server-go_producer
+//docker rmi edson2021/subscribergo edson2021/server_grpc_201701029 edson2021/grpclientnode

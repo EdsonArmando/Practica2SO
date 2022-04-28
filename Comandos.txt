@@ -1,0 +1,5 @@
+kubectl apply -f load-balancer-gRPC.yaml --namespace=practica2-201701029
+kubectl expose deployment practica2-201701029 --type=LoadBalancer --name=so-practica2 --load-balancer-ip=34.121.46.185
+//Cambiar al namespace
+kubectl config set-context --current --namespace=practica2-201701029
+//Ver los logs de un contendor
