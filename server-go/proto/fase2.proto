@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "github.com/EdsonArmando/demo-gRCP/proto";
+
+package proto;
+
+service IniciarJuego {
+  
+  rpc EjecutarJuego (JuegoRequest) returns (Reply) {}
+  rpc LogsJuego (Empty) returns (JuegoReply) {}
+}
+
+message JuegoRequest {
+  int32 game_id = 1;
+  int32 players = 2;
+}
+
+message Reply {
+  string message = 1;
+}
+
+message Empty {}
+
+message JuegoReply {
+  int32 game_id = 1;
+  int32 players = 2;
+}

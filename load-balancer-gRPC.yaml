@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: practica2_201701029
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: backendsa
+        image: edson2021/backend_p1_201701029
+        ports:
+        - containerPort: 3004
+        volumeMounts:
+        - mountPath: /cache
+          name: cache-volume
+      volumes:
+        - name: cache-volume
+          emptyDir: {}

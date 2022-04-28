@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    hostname: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_PORT: "9092"
+    networks:
+      - kafka_go_net
+
+  producer:
+    build: ./
+    container_name: producer
+    ports: 
+      - 50051:50051
+    depends_on:
+      - "kafka"
+    restart: always
+    networks:
+      - kafka_go_net
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - kafka_go_net
+
+  subscriber:
+    build: ./Kafka/
+    container_name: subscriber
+    ports:
+      - 8080:8080
+    depends_on: 
+      - "kafka"
+    restart: always
+    networks:
+      - kafka_go_net
+  
+networks:
+  kafka_go_net:
+    driver: bridge
