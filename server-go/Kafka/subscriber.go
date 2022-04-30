@@ -78,7 +78,7 @@ func insertar_mongo(contenido []byte) {
 	// MongoDB
 	var djson Data
 	err := json.Unmarshal(contenido, &djson)
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://mongoadmin:Arqui2022_2022@35.223.122.104:27017/?compressors=disabled&gssapiServiceName=mongodb"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://mongoadmin:Arqui2022_2022@35.223.112.104:27017/?compressors=disabled&gssapiServiceName=mongodb"))
 	if err != nil {
 		log.Fatal(err)
 	}
