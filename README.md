@@ -39,6 +39,9 @@ kubectl get services
 ## Comando para cambiarse de namespace
 kubectl config set-context --current --namespace=practica2-201701029
 
+## Servicio Funcionando
+![service](https://user-images.githubusercontent.com/14056462/166617131-9df43845-7737-47c2-9a16-e14cb54ba120.png)
+
 # Manual de Usuario
 Al no poder contar con un frontend el usuario puede acceder al servicio utilizando la direccion ip del load balancer. En la siguiente imagen se ve como se puede mandar datos al client de node.
 
