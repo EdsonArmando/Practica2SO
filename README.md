@@ -34,7 +34,7 @@ kubectl expose deployment practica2-201701029 --type=LoadBalancer --name=so-prac
 kubectl get services
 
 ## Comando para crear nuevo namespace
-kubectl config set-context --current --namespace=practica2-201701029
+  kubectl create namespace practica2-201701029
 
 ## Comando para cambiarse de namespace
 kubectl config set-context --current --namespace=practica2-201701029
